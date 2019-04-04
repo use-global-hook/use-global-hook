@@ -1,11 +1,21 @@
 # use-global-hook
 
+[![npm version](https://badge.fury.io/js/use-global-hook.svg)](https://badge.fury.io/js/use-global-hook)
+
 Easy state manegment for react using hooks in less than 1kb.
 
 ------------
+## Getting started
 
+React use-global-hook requires **React 16.8 or later.**
 
-Minimal example:
+#### Install with NPM
+
+```
+$ npm install use-global-hook --save
+```
+
+## Example:
 ```javascript
 import React from 'react';
 import useGlobalHook from 'use-global-hook';
