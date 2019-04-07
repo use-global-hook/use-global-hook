@@ -1,6 +1,6 @@
 # use-global-hook
 
-Easy state manegment for react using hooks in less than 1kb.
+Easy state management for react using hooks in less than 1kb.
 
 ------------
 
