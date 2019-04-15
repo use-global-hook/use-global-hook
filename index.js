@@ -29,10 +29,11 @@ function associateActions(store, actions) {
   return associatedActions;
 }
 
-const useStore = (React, initialState, actions) => {
+const useStore = (React, initialState, actions, initializer) => {
   const store = { state: initialState, listeners: [] };
   store.setState = setState.bind(store);
   store.actions = associateActions(store, actions);
+  if (initializer) initializer(store);
   return useCustom.bind(store, React);
 };
 
