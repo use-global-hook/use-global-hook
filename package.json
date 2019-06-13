@@ -1,8 +1,8 @@
 {
   "license": "ISC",
   "main": "index.js",
-  "name": "use-global-hook",
-  "repository": "github:andregardi/use-global-hook",
+  "name": "@znemz/use-global-hook",
+  "repository": "github:nmccready/use-global-hook",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

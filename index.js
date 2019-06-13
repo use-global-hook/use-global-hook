@@ -1,8 +1,12 @@
-function setState(newState) {
-  this.state = { ...this.state, ...newState };
+function setState(newState, isRef) {
+  this.state = isRef? newState : { ...this.state, ...newState };
   this.listeners.forEach((listener) => {
     listener(this.state);
   });
+}
+
+function setRef(newState) {
+  setState.call(this, newState, true);
 }
 
 function useCustom(React) {
@@ -32,6 +36,7 @@ function associateActions(store, actions) {
 const useStore = (React, initialState, actions, initializer) => {
   const store = { state: initialState, listeners: [] };
   store.setState = setState.bind(store);
+  store.setRef = setRef.bind(store);
   store.actions = associateActions(store, actions);
   if (initializer) initializer(store);
   return useCustom.bind(store, React);
