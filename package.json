@@ -1,11 +1,46 @@
 {
+  "name": "use-global-hook",
+  "version": "0.1.7",
+  "repository": "github:andregardi/use-global-hook",
   "license": "ISC",
-  "main": "index.js",
-  "name": "@znemz/use-global-hook",
-  "repository": "github:nmccready/use-global-hook",
+  "author": "andregardi",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "main": "lib/index.js",
   "scripts": {
+    "gulp": "node -r esm ./node_modules/.bin/gulp",
+    "jest": "node -r esm ./node_modules/.bin/jest",
+    "build": "gulp default",
+    "prepare": "yarn sort-package-json",
+    "prepublish": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.1.7",
-  "author": "andregardi"
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "coveralls": "^3.0.4",
+    "del": "^4.1.1",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-import-resolver-jest": "^2.1.1",
+    "eslint-plugin-jest": "^22.3.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-watch": "^5.1.2",
+    "esm": "^3.2.22",
+    "gulp": "4",
+    "gulp-babel": "^8",
+    "gulp-eslint": "^4",
+    "jest": "^24",
+    "jest-cli": "^24",
+    "jest-expect-message": "^1.0.2",
+    "jest-extended": "^0.11.1",
+    "sort-package-json": "^1.21.0"
+  }
 }

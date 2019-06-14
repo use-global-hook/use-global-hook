@@ -1,0 +1,5 @@
+submodules
+node_modules
+node_modules/**/*.js
+dist
+lib
