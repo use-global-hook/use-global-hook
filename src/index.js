@@ -15,7 +15,7 @@ function useCustom(React) {
   React.useEffect(() => {
     this.listeners.push(newListener);
     return () => {
-      this.listeners = this.listeners.filter(listener => listener !== newListener);
+      this.listeners = this.listeners.filter((listener) => listener !== newListener);
     };
   }, []);
   return [this.state, this.actions];
@@ -33,7 +33,7 @@ function associateActions(store, actions) {
     if (typeof actions[key] === 'object') {
       associatedActions[key] = associateActions(store, actions[key]);
     }
-  };
+  }
   return associatedActions;
 }
 
@@ -42,7 +42,9 @@ const useStore = (React, initialState, actions, initializer) => {
   store.setState = setState.bind(store);
   store.setRef = setRef.bind(store);
   store.actions = associateActions(store, actions);
-  if (initializer) initializer(store);
+  if (initializer) {
+    initializer(store);
+  }
   return useCustom.bind(store, React);
 };
 

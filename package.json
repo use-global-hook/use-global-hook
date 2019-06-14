@@ -13,7 +13,7 @@
     "build": "yarn gulp default",
     "gulp": "node -r esm ./node_modules/.bin/gulp",
     "jest": "node -r esm ./node_modules/.bin/jest",
-    "lint": "esw *.js __jest__ --color",
+    "lint": "esw *.js src __jest__ --color",
     "lint:watch": "yarn lint --watch",
     "prepare": "yarn sort-package-json",
     "prepublish": "yarn test && yarn build",
