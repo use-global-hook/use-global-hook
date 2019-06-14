@@ -13,9 +13,11 @@
     "build": "yarn gulp default",
     "gulp": "node -r esm ./node_modules/.bin/gulp",
     "jest": "node -r esm ./node_modules/.bin/jest",
+    "lint": "esw *.js __jest__ --color",
+    "lint:watch": "yarn lint --watch",
     "prepare": "yarn sort-package-json",
-    "prepublish": "yarn build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "yarn test && yarn build",
+    "test": "yarn lint"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -28,6 +30,7 @@
     "babel-eslint": "^10.0.1",
     "coveralls": "^3.0.4",
     "del": "^4.1.1",
+    "eslint-config-gulp": "^3.0.1",
     "eslint-config-prettier": "^4.0.0",
     "eslint-import-resolver-jest": "^2.1.1",
     "eslint-plugin-jest": "^22.3.2",

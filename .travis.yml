@@ -1,0 +1,23 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - '10'
+  - '8'
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install -g yarn@1.16
+  - yarn
+
+after_script:
+  - yarn test:ci
+  - yarn coveralls
+
+branches:
+  except:
+    - /^v[0-9]/
