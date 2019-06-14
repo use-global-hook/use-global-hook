@@ -10,9 +10,9 @@
   ],
   "main": "lib/index.js",
   "scripts": {
+    "build": "yarn gulp default",
     "gulp": "node -r esm ./node_modules/.bin/gulp",
     "jest": "node -r esm ./node_modules/.bin/jest",
-    "build": "gulp default",
     "prepare": "yarn sort-package-json",
     "prepublish": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1"
