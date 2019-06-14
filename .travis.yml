@@ -16,7 +16,6 @@ install:
 
 after_script:
   - yarn test:ci
-  - yarn coveralls
 
 branches:
   except:

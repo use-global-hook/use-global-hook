@@ -17,7 +17,8 @@
     "lint:watch": "yarn lint --watch",
     "prepare": "yarn sort-package-json",
     "prepublish": "yarn test && yarn build",
-    "test": "yarn lint"
+    "test": "yarn lint",
+    "test:ci": "yarn test"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
