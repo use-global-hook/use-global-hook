@@ -11,7 +11,12 @@ function useCustom(React) {
   React.useEffect(() => {
     this.listeners.push(newListener);
     return () => {
-      this.listeners = this.listeners.filter(listener => listener !== newListener);
+      let index = this.listeners.length;
+      while (index--) {
+        if (this.listeners[index] === newListener) {
+          this.listeners.splice(index, 1);
+        }
+      }
     };
   }, []);
   return [this.state, this.actions];
