@@ -1,8 +1,9 @@
 function setState(newState) {
+  const listenersLength = this.listeners.length;
   this.state = { ...this.state, ...newState };
-  this.listeners.forEach((listener) => {
-    listener(this.state);
-  });
+  for (let i = 0; i < listenersLength; i++) {
+    this.listeners[i](this.state);
+  }
 }
 
 function useCustom(React) {
@@ -10,7 +11,12 @@ function useCustom(React) {
   React.useEffect(() => {
     this.listeners.push(newListener);
     return () => {
-      this.listeners = this.listeners.filter(listener => listener !== newListener);
+      let index = this.listeners.length;
+      while (index--) {
+        if (this.listeners[index] === newListener) {
+          this.listeners.splice(index, 1);
+        }
+      }
     };
   }, []);
   return [this.state, this.actions];
@@ -18,14 +24,17 @@ function useCustom(React) {
 
 function associateActions(store, actions) {
   const associatedActions = {};
-  Object.keys(actions).forEach((key) => {
+  const actionsKeys = Object.keys(actions);
+  const actionsKeysLength = actionsKeys.length;
+  for (let i = 0; i < actionsKeysLength; i++) {
+    const key = actionsKeys[i];
     if (typeof actions[key] === 'function') {
       associatedActions[key] = actions[key].bind(null, store);
     }
     if (typeof actions[key] === 'object') {
       associatedActions[key] = associateActions(store, actions[key]);
     }
-  });
+  };
   return associatedActions;
 }
 
