@@ -4,8 +4,22 @@
   "name": "use-global-hook",
   "repository": "github:andregardi/use-global-hook",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "jest": "node -r esm ./node_modules/.bin/jest",
+    "test": "yarn jest",
+    "test:ci": "yarn lint && yarn test --coverage && yarn coveralls"
   },
   "version": "0.1.8",
-  "author": "andregardi"
+  "author": "andregardi",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@testing-library/react-hooks": "^2.0.1",
+    "@znemz/react-extras-jest": "^1.1.0",
+    "bluebird": "^3.5.5",
+    "esm": "^3.2.22"
+  }
 }
