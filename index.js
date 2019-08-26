@@ -1,49 +1,45 @@
-function setState(newState) {
-  const listenersLength = this.listeners.length;
-  this.state = { ...this.state, ...newState };
+function setState(store, newState) {
+  const listenersLength = store.listeners.length;
+  store.state = { ...store.state, ...newState };
   for (let i = 0; i < listenersLength; i++) {
-    this.listeners[i](this.state);
+    store.listeners[i](store.state);
   }
 }
 
-function useCustom(React) {
+function useCustom(store, React) {
   const newListener = React.useState()[1];
+  const oldState = store.state;
   React.useEffect(() => {
-    this.listeners.push(newListener);
+    store.listeners.push(newListener);
+    if (oldState !== store.state) newListener(store.state);
     return () => {
-      let index = this.listeners.length;
-      while (index--) {
-        if (this.listeners[index] === newListener) {
-          this.listeners.splice(index, 1);
-        }
-      }
+      store.listeners = store.listeners.filter(
+        listener => listener !== newListener
+      );
     };
-  }, []);
-  return [this.state, this.actions];
+  }, []); // eslint-disable-line
+  return [store.state, store.actions];
 }
 
 function associateActions(store, actions) {
   const associatedActions = {};
-  const actionsKeys = Object.keys(actions);
-  const actionsKeysLength = actionsKeys.length;
-  for (let i = 0; i < actionsKeysLength; i++) {
-    const key = actionsKeys[i];
-    if (typeof actions[key] === 'function') {
+  Object.keys(actions).forEach(key => {
+    if (typeof actions[key] === "function") {
       associatedActions[key] = actions[key].bind(null, store);
     }
-    if (typeof actions[key] === 'object') {
+    if (typeof actions[key] === "object") {
       associatedActions[key] = associateActions(store, actions[key]);
     }
-  };
+  });
   return associatedActions;
 }
 
 const useStore = (React, initialState, actions, initializer) => {
   const store = { state: initialState, listeners: [] };
-  store.setState = setState.bind(store);
+  store.setState = setState.bind(null, store);
   store.actions = associateActions(store, actions);
   if (initializer) initializer(store);
-  return useCustom.bind(store, React);
+  return () => useCustom(store, React);
 };
 
 export default useStore;
