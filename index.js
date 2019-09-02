@@ -1,24 +1,35 @@
-function setState(store, newState) {
+function setState(store, newState, afterUpdateCallback) {
   const listenersLength = store.listeners.length;
   store.state = { ...store.state, ...newState };
   for (let i = 0; i < listenersLength; i++) {
     store.listeners[i](store.state);
   }
+  afterUpdateCallback && afterUpdateCallback();
 }
 
-function useCustom(store, React) {
-  const newListener = React.useState()[1];
+function useCustom(store, React, mapState, mapActions) {
   const oldState = store.state;
+  const [state, originalHook] = React.useState(
+    mapState ? mapState(store.state) : store.state
+  );
+  const actions = React.useMemo(
+    () => (mapActions ? mapActions(store.actions) : store.actions),
+    [mapActions, store.actions]
+  );
+
   React.useEffect(() => {
+    let newListener = mapState
+      ? state => originalHook(mapState(state))
+      : originalHook;
     store.listeners.push(newListener);
-    if (oldState !== store.state) newListener(store.state);
+    oldState !== store.state && newListener(store.state);
     return () => {
       store.listeners = store.listeners.filter(
         listener => listener !== newListener
       );
     };
   }, []); // eslint-disable-line
-  return [store.state, store.actions];
+  return [state, actions];
 }
 
 function associateActions(store, actions) {
@@ -39,7 +50,7 @@ const useStore = (React, initialState, actions, initializer) => {
   store.setState = setState.bind(null, store);
   store.actions = associateActions(store, actions);
   if (initializer) initializer(store);
-  return () => useCustom(store, React);
+  return useCustom.bind(null, store, React);
 };
 
 export default useStore;
