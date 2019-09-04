@@ -58,3 +58,11 @@ The parent component won't render again.
 Search GitHub repos by username.
 Handle the ajax request asynchronously with async/await.
 Update the requests counter on every search.
+
+
+------------
+
+
+#### [Avoid unnecessary renders](https://codesandbox.io/s/several-counters-pdbsy "CodeSandBox")
+Map a subset of the global state before use it.
+The component will only re-render if the subset is updated.
