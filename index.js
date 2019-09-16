@@ -1,9 +1,9 @@
 function setState(store, newState, afterUpdateCallback) {
   const listenersLength = store.listeners.length;
   store.state = { ...store.state, ...newState };
-  for (let i = 0; i < listenersLength; i++) {
-    store.listeners[i].run(store.state);
-  }
+  store.listeners.forEach((listener) => {
+    listener.run(store.state);
+  });
   afterUpdateCallback && afterUpdateCallback();
 }
 
