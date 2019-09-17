@@ -4,8 +4,13 @@ Easy state management for react using hooks in less than 1kb.
 
 ------------
 
+### Install:
 
-Minimal example:
+```javascript
+npm i use-global-hook
+```
+
+### Minimal example:
 ```javascript
 import React from 'react';
 import useGlobalHook from 'use-global-hook';
