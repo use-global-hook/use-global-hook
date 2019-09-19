@@ -13,7 +13,7 @@ npm i use-global-hook
 ### Minimal example:
 ```javascript
 import React from 'react';
-import useGlobalHook from 'use-global-hook';
+import globalHook from 'use-global-hook';
 
 const initialState = {
   counter: 0,
@@ -26,7 +26,7 @@ const actions = {
   },
 };
 
-const useGlobal = useGlobalHook(React, initialState, actions);
+const useGlobal = globalHook(React, initialState, actions);
 
 const App = () => {
   const [globalState, globalActions] = useGlobal();
