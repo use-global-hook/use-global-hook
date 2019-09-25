@@ -3,6 +3,11 @@
 Easy state management for react using hooks in less than 1kb.
 
 ------------
+Table of Contents
+* [Install](#install)
+* [Example](#example)
+* [Complete Examples](#complete-examples)
+* [Using TypeScript](#using-typescript)
 
 ### Install:
 
@@ -71,3 +76,63 @@ Update the requests counter on every search.
 #### [Avoid unnecessary renders](https://codesandbox.io/s/several-counters-pdbsy "CodeSandBox")
 Map a subset of the global state before use it.
 The component will only re-render if the subset is updated.
+
+------------
+
+
+### Using TypeScript
+
+Install the TypeScript definitions from DefinitelyTyped
+```
+npm install @types/use-global-hook
+```
+
+Example implementation
+```javascript
+import globalHook, { Store } from 'use-global-hook';
+
+// Defining your own state and associated actions is required
+type MyState = {
+  value: string;
+};
+
+// Associated actions are what's expected to be returned from globalHook
+type MyAssociatedActions = {
+  setValue: (value: string) => void;
+  otherAction: (other: boolean) => void;
+};
+
+// setValue will be returned by globalHook as setValue.bind(null, store)
+// This is one reason we have to declare a separate associated actions type
+const setValue = (
+  store: Store<MyState, MyAssociatedActions>,
+  value: string
+) => {
+  store.setState({ ...store.state, value });
+  store.actions.otherAction(true);
+};
+
+const otherAction(
+  store: Store<MyState, MyAssociatedActions>,
+  other: boolean
+) => { /* cool stuff */ }
+
+const initialState: MyState = {
+  value: "myString"
+};
+
+// actions passed to globalHook do not need to be typed
+const actions = {
+  setValue,
+  otherAction
+}
+
+const useGlobal = globalHook<MyState, MyAssociatedActions>(
+  React,
+  initialState,
+  actions
+);
+
+// useGlobal() will return [state: MyState, actions: MyAssociatedActions]
+// Happy TypeScripting!
+```
