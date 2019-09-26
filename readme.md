@@ -115,7 +115,7 @@ const setValue = (
 const otherAction(
   store: Store<MyState, MyAssociatedActions>,
   other: boolean
-) => { /* cool stuff */ }
+) => { /* cool stuff */ };
 
 const initialState: MyState = {
   value: "myString"
@@ -125,7 +125,7 @@ const initialState: MyState = {
 const actions = {
   setValue,
   otherAction
-}
+};
 
 const useGlobal = globalHook<MyState, MyAssociatedActions>(
   React,
@@ -133,6 +133,17 @@ const useGlobal = globalHook<MyState, MyAssociatedActions>(
   actions
 );
 
-// useGlobal() will return [state: MyState, actions: MyAssociatedActions]
+// Usage
+const [state, actions] = useGlobal<MyState, MyAssociatedActions>();
+
+// Subset
+const [value, setValue] = useGlobal<string, (value: string) => void>(
+  (state: MyState) => state.value,
+  (actions: MyAssociatedActions) => actions.setValue
+);
+
+// Without declaring type, useGlobal will return unknown
+const [state, actions] = useGlobal(); // returns [unknown, unknown]
+
 // Happy TypeScripting!
 ```
