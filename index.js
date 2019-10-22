@@ -15,7 +15,7 @@ function useCustom(store, React, mapState, mapActions) {
   const [, originalHook] = React.useState(state);
 
   React.useEffect(() => {
-    const newListener = { oldState: {} };
+    const newListener = { oldState: state };
     newListener.run = mapState
       ? newState => {
           const mappedState = mapState(newState);
