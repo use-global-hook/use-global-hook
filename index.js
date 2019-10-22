@@ -12,10 +12,10 @@ function useCustom(store, React, mapState, mapActions) {
     () => (mapActions ? mapActions(store.actions) : store.actions),
     [mapActions, store.actions]
   );
-  const [, originalHook] = React.useState(state);
+  const [, originalHook] = React.useState(Object.create(null));
 
   React.useEffect(() => {
-    const newListener = { oldState: state };
+    const newListener = { oldState: {} };
     newListener.run = mapState
       ? newState => {
           const mappedState = mapState(newState);
@@ -26,7 +26,6 @@ function useCustom(store, React, mapState, mapActions) {
         }
       : originalHook;
     store.listeners.push(newListener);
-    newListener.run(store.state);
     return () => {
       store.listeners = store.listeners.filter(
         listener => listener !== newListener
