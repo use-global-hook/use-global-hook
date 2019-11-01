@@ -80,6 +80,15 @@ The component will only re-render if the subset is updated.
 ------------
 
 
+#### [Connecting to a class component](https://codesandbox.io/s/connect-a-class-component-rgbf1 "CodeSandBox")
+Hooks can't be used inside a class component.
+We can use a Higher-Order Component that connects any claas component with the state.
+With the connect() function, state and actions become props of the component.
+
+
+------------
+
+
 ### Using TypeScript
 
 Install the TypeScript definitions from DefinitelyTyped
