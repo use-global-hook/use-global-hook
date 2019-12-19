@@ -57,4 +57,6 @@ const useStore = (React, initialState, actions, initializer) => {
   return useCustom.bind(null, store, React);
 };
 
-export default useStore;
+// fix for issue #27
+// export default useStore;
+module.exports = useStore;
