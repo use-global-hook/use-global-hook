@@ -31,6 +31,7 @@ function useCustom(store, React, mapState, mapActions) {
       store.listeners = store.listeners.filter(
         listener => listener !== newListener
       );
+      store.state = store.listeners.length <= 0 ? initialState : store.state
     };
   }, []); // eslint-disable-line
   return [state, actions];
