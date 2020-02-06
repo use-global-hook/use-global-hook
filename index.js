@@ -1,3 +1,4 @@
+
 function setState(store, newState, afterUpdateCallback) {
   store.state = { ...store.state, ...newState };
   store.listeners.forEach((listener) => {
@@ -6,7 +7,7 @@ function setState(store, newState, afterUpdateCallback) {
   afterUpdateCallback && afterUpdateCallback();
 }
 
-function useCustom(store, React, mapState, mapActions) {
+function useCustom(store, React, initialState, mapState, mapActions) {
   const [, originalHook] = React.useState(Object.create(null));
   const state = mapState ? mapState(store.state) : store.state;
   const actions = React.useMemo(
@@ -18,12 +19,12 @@ function useCustom(store, React, mapState, mapActions) {
     const newListener = { oldState: {} };
     newListener.run = mapState
       ? newState => {
-          const mappedState = mapState(newState);
-          if (mappedState !== newListener.oldState) {
-            newListener.oldState = mappedState;
-            originalHook(mappedState);
-          }
+        const mappedState = mapState(newState);
+        if (mappedState !== newListener.oldState) {
+          newListener.oldState = mappedState;
+          originalHook(mappedState);
         }
+      }
       : originalHook;
     store.listeners.push(newListener);
     newListener.run(store.state);
@@ -55,7 +56,7 @@ const useStore = (React, initialState, actions, initializer) => {
   store.setState = setState.bind(null, store);
   store.actions = associateActions(store, actions);
   if (initializer) initializer(store);
-  return useCustom.bind(null, store, React);
+  return useCustom.bind(null, store, React, initialState);
 };
 
 export default useStore;
