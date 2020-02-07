@@ -7,7 +7,7 @@ function setState(store, newState, afterUpdateCallback) {
   afterUpdateCallback && afterUpdateCallback();
 }
 
-function useCustom(store, React, initialState, mapState, mapActions) {
+function useCustom(store, React, mapState, mapActions) {
   const [, originalHook] = React.useState(Object.create(null));
   const state = mapState ? mapState(store.state) : store.state;
   const actions = React.useMemo(
