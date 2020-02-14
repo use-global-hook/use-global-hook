@@ -121,7 +121,7 @@ const setValue = (
   store.actions.otherAction(true);
 };
 
-const otherAction(
+const otherAction = (
   store: Store<MyState, MyAssociatedActions>,
   other: boolean
 ) => { /* cool stuff */ };
