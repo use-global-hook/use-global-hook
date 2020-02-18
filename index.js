@@ -1,5 +1,5 @@
 function setState(store, newState, afterUpdateCallback) {
-  store.state = { ...store.state, ...newState };
+  store.state = Object.assign(store.state, newState);
   store.listeners.forEach((listener) => {
     listener.run(store.state);
   });
