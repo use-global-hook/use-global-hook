@@ -1,3 +1,4 @@
+
 function setState(store, newState, afterUpdateCallback) {
   store.state = { ...store.state, ...newState };
   store.listeners.forEach((listener) => {
@@ -18,18 +19,19 @@ function useCustom(store, React, mapState, mapActions) {
     const newListener = { oldState: {} };
     newListener.run = mapState
       ? newState => {
-          const mappedState = mapState(newState);
-          if (mappedState !== newListener.oldState) {
-            newListener.oldState = mappedState;
-            originalHook(mappedState);
-          }
+        const mappedState = mapState(newState);
+        if (mappedState !== newListener.oldState) {
+          newListener.oldState = mappedState;
+          originalHook(mappedState);
         }
+      }
       : originalHook;
     store.listeners.push(newListener);
     return () => {
       store.listeners = store.listeners.filter(
         listener => listener !== newListener
       );
+      store.state = store.listeners.length <= 0 ? initialState : store.state
     };
   }, []); // eslint-disable-line
   return [state, actions];
@@ -53,7 +55,7 @@ const useStore = (React, initialState, actions, initializer) => {
   store.setState = setState.bind(null, store);
   store.actions = associateActions(store, actions);
   if (initializer) initializer(store);
-  return useCustom.bind(null, store, React);
+  return useCustom.bind(null, store, React, initialState);
 };
 
 // fix for issue #27
