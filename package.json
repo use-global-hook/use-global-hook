@@ -4,6 +4,8 @@
   "name": "use-global-hook",
   "repository": "github:andregardi/use-global-hook",
   "type":"module",
+  "readme": "SEE LICENSE IN README.md",
+  "license": "SEE LICENSE IN LICENSE.md",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -5,18 +5,24 @@ Easy state management for react using hooks in less than 1kb.
 ------------
 Table of Contents
 * [Install](#install)
-* [Example](#example)
+* [Example](#minimal-example)
 * [Complete Examples](#complete-examples)
 * [Using TypeScript](#using-typescript)
 
 ### Install:
 
-```javascript
+```sh
 npm i use-global-hook
 ```
 
+or
+
+```sh
+yarn add use-global-hook
+```
+
 ### Minimal example:
-```javascript
+```jsx
 import React from 'react';
 import globalHook from 'use-global-hook';
 
@@ -97,7 +103,7 @@ npm install @types/use-global-hook
 ```
 
 Example implementation
-```javascript
+```typescript
 import globalHook, { Store } from 'use-global-hook';
 
 // Defining your own state and associated actions is required
