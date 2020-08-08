@@ -1,0 +1,11 @@
+[production test]
+ie 11
+edge >= 14
+firefox >= 52
+chrome >= 49
+safari >= 10
+node 10.0
+not dead
+
+[development]
+last 1 Chrome version
