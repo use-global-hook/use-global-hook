@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/core/index.js",
   "name": "use-global-hook",
   "repository": "github:andregardi/use-global-hook",
   "type":"module",
