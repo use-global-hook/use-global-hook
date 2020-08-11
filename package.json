@@ -1,5 +1,5 @@
 {
-  "version": "0.1.13",
+  "version": "0.1.14",
   "author": "andregardi",
   "name": "use-global-hook",
   "readme": "SEE LICENSE IN README.md",
@@ -38,6 +38,5 @@
   },
   "bugs": {
     "url": "https://github.com/andregardi/use-global-hook/issues"
-  },
-  "homepage": "https://davityavryan.github.io/material-ui-chameleon"
+  }
 }
