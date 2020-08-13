@@ -95,6 +95,14 @@ With the connect() function, state and actions become props of the component.
 ------------
 
 
+#### [Immutable state with Immer.js intagration](https://codesandbox.io/s/immer-integration-e1hpj "CodeSandBox")
+Add Immer.js lib on your hook options to manage complex immutable states.
+Mutate a state draft inside a setState function.
+Immer will calculate the state diff and create a new immutable state object.
+
+
+------------
+
 ### Using TypeScript
 
 Install the TypeScript definitions from DefinitelyTyped

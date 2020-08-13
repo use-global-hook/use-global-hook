@@ -1,9 +1,8 @@
 {
-  "version": "0.1.13",
+  "version": "0.2.0",
   "author": "andregardi",
   "name": "use-global-hook",
-  "readme": "SEE LICENSE IN README.md",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c ./rollup.config.js",
@@ -38,6 +37,5 @@
   },
   "bugs": {
     "url": "https://github.com/andregardi/use-global-hook/issues"
-  },
-  "homepage": "https://davityavryan.github.io/material-ui-chameleon"
+  }
 }
