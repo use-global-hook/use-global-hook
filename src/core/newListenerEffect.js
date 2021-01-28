@@ -3,7 +3,7 @@ import { cleanUpListener } from "./cleanUpListener";
 export const newListenerEffect = (store, mapState, originalHook) => () => {
   const newListener = {
     isComponentBeingUnmounted: false,
-    oldState: {},
+    oldState: undefined,
   };
   newListener.run = (newState) => {
     if (newListener.isComponentBeingUnmounted) {
