@@ -1,9 +1,14 @@
 import { cleanUpListener } from "./cleanUpListener";
 
-export const newListenerEffect = (store, mapState, originalHook) => () => {
+export const newListenerEffect = (
+  store,
+  mapState,
+  originalHook,
+  initialMappedState
+) => () => {
   const newListener = {
     isComponentBeingUnmounted: false,
-    oldState: undefined,
+    oldState: initialMappedState,
   };
   newListener.run = (newState) => {
     if (newListener.isComponentBeingUnmounted) {
