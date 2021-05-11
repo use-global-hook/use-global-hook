@@ -40,5 +40,6 @@
   },
   "contributors": [
     "Davit Yavryan <davit.yavryan@gmail.com>"
-  ]
+  ],
+  "dependencies": {}
 }
