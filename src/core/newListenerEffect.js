@@ -11,6 +11,7 @@ export const newListenerEffect = (store, mapState, originalHook) => () => {
         }
       }
     : originalHook;
+  newListener.run(store.state);
   store.listeners.push(newListener);
   return cleanUpListener(store, newListener);
 };
