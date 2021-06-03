@@ -24,7 +24,6 @@ export const reduxDevToolsPlugin = (store, options) => {
 
           return () => {
             unsubscribe();
-            devTools.unsubscribe?.();
           }
         }, []);
       }
