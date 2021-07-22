@@ -10,9 +10,9 @@ export function customHook(store, React, mapState, mapActions) {
   const state = mapState ? mapState(store.state) : store.state;
   const actions = getMappedActions(store, React, mapActions);
 
-  const originalHook = React.useState(Object.create(null))[1];
+  const originalHook = React.useState(state)[1];
 
-  React.useEffect(newListenerEffect(store, mapState, originalHook), []); // eslint-disable-line
+  React.useEffect(newListenerEffect(store, state, mapState, originalHook), []); // eslint-disable-line
 
   return [state, actions];
 }
