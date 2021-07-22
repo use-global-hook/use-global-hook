@@ -37,7 +37,7 @@ const actions = {
   },
 };
 
-const useGlobal = globalHook(React, initialState, actions);
+const useGlobal = globalHook(initialState, actions);
 
 const App = () => {
   const [globalState, globalActions] = useGlobal();
@@ -151,7 +151,6 @@ const actions = {
 };
 
 const useGlobal = globalHook<MyState, MyAssociatedActions>(
-  React,
   initialState,
   actions
 );
