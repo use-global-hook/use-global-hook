@@ -14,5 +14,8 @@ export function customHook(store, React, mapState, mapActions) {
 
   React.useEffect(newListenerEffect(store, state, mapState, originalHook), []); // eslint-disable-line
 
+  // allow plugins to define theirs hooks
+  store.plugins.hooks.forEach(hook => hook(React));
+
   return [state, actions];
 }

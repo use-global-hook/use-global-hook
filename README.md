@@ -8,6 +8,7 @@ Table of Contents
 * [Example](#minimal-example)
 * [Complete Examples](#complete-examples)
 * [Using TypeScript](#using-typescript)
+* [Using Redux Dev Tools](#using-redux-dev-tools)
 
 ### Install:
 
@@ -170,3 +171,31 @@ const [state, actions] = useGlobal(); // returns [unknown, unknown]
 
 // Happy TypeScripting!
 ```
+
+------------
+
+### Using Redux Dev Tools
+
+A special option `reduxDevTools` should be passed to turn on redux dev tools:
+```
+const useGlobal = globalHook(initialState, actions, { reduxDevTools: true });
+```
+or
+```
+const useGlobal = globalHook(React, initialState, actions, {
+  reduxDevTools: {
+    features: {
+      pause: true, // start/pause recording of dispatched actions
+      lock: true, // lock/unlock dispatching actions and side effects
+      export: true, // export history of actions in a file
+      import: 'custom', // import history of actions from a file
+      jump: true, // jump back and forth (time travelling)
+
+      ...other features
+    }
+    ...other options
+  }
+});
+```
+
+`reduxDevTools` property receive any valid options from official [redux dev tools docs](https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md)

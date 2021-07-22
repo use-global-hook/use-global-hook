@@ -1,4 +1,5 @@
 import { immerPlugin } from "../plugins/immer";
+import { reduxDevToolsPlugin } from "../plugins/reduxDevTools";
 
 export const setupOptions = (store, options = {}) => {
   //Backward compatibility with 0.1.2
@@ -6,7 +7,8 @@ export const setupOptions = (store, options = {}) => {
     options(store);
     return;
   }
-  const { Immer, initializer } = options;
+  const { Immer, initializer, reduxDevTools } = options;
   Immer && immerPlugin(Immer, store);
+  reduxDevTools && reduxDevToolsPlugin(store, reduxDevTools);
   initializer && initializer(store);
 };
