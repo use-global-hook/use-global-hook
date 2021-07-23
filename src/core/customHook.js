@@ -1,14 +1,8 @@
 import { newListenerEffect } from "./newListenerEffect";
 
-const getMappedActions = (store, React, mapActions) =>
-  React.useMemo(
-    () => (mapActions ? mapActions(store.actions) : store.actions),
-    [mapActions, store.actions]
-  );
-
 export function customHook(store, React, mapState, mapActions) {
   const state = mapState ? mapState(store.state) : store.state;
-  const actions = getMappedActions(store, React, mapActions);
+  const actions = mapActions ? mapActions(store.actions) : store.actions;
 
   const originalHook = React.useState(state)[1];
 
