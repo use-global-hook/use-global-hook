@@ -1,6 +1,7 @@
+import * as React from 'react';
 import { newListenerEffect } from "./newListenerEffect";
 
-export function customHook(store, React, mapState, mapActions) {
+export function customHook(store, mapState, mapActions) {
   const state = mapState ? mapState(store.state) : store.state;
   const actions = mapActions ? mapActions(store.actions) : store.actions;
 
