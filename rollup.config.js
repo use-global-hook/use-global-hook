@@ -5,7 +5,9 @@ import replace from "@rollup/plugin-replace";
 import { terser } from "rollup-plugin-terser";
 
 const input = "./src";
-const globals = {};
+const globals = {
+  'react': 'React'
+};
 const commonjsOptions = {
   include: /node_modules/,
 };
