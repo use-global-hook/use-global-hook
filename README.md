@@ -57,6 +57,8 @@ const App = () => {
 export default App;
 ```
 
+> Note: if "useGlobal" returns an object from state then any update of the object properties will also lead to re-render for consumers of the entire object.
+
 ------------
 
 
