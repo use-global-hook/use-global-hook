@@ -7,7 +7,7 @@ export const newListenerEffect = (store, oldState, mapState, originalHook) => {
         const mappedState = mapState(newState);
         if (mappedState !== newListener.oldState) {
           newListener.oldState = mappedState;
-          originalHook(mappedState);
+          originalHook(newState);
         }
       }
     : originalHook;
