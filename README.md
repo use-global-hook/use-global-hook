@@ -57,6 +57,8 @@ const App = () => {
 export default App;
 ```
 
+> Note: if "useGlobal" returns an object from state then any update of the object properties will also lead to re-render for consumers of the entire object.
+
 ------------
 
 
@@ -79,9 +81,9 @@ Update the requests counter on every search.
 ------------
 
 
-#### [Avoid unnecessary renders](https://codesandbox.io/s/several-counters-pdbsy "CodeSandBox")
-Map a subset of the global state before use it.
-The component will only re-render if the subset is updated.
+#### [Avoid unnecessary renders](https://codesandbox.io/s/global-hook-object-optimization-rm77u "CodeSandBox")
+Use `shouldUpdate(compare)` method.
+The hook will only lead re-render if the compare callback returns true.
 
 ------------
 
