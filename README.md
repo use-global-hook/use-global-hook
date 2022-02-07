@@ -1,3 +1,5 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 # DEPRECATED
 
 This is no longer supported, please use https://github.com/qosenergy/shared-store-hook instead.
