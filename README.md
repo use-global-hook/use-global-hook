@@ -1,3 +1,7 @@
+
+This is no longer supported, please use https://github.com/qosenergy/shared-store-hook instead.
+
+
 # use-global-hook
 
 Easy state management for react using hooks in less than 1kb.
